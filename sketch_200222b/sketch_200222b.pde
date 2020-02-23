@@ -1,12 +1,6 @@
 PFont font;
-//true es que está lleno
+//true es lleno
 boolean opcionDeLlenado = true;
-public enum Shape {
-    PUNTO,
-    LINEA,
-    RECT,
-    ELLIPSE
-}
 
 float tamCirc=25;
 
@@ -51,35 +45,35 @@ void menu(){
   text("Shape?",posXShape,200);
 
   fill(0);
-
+  //punto
   circle(30,220,20);
   text("Point",posXShape,posYPoint); 
-
+  //linea
   strokeWeight(2);
   line(20,260,40,260);
   text("Line",posXShape,posYLine);
-
+  //rectangulo
   rect(20,290 , 25,15);
   text("Rectangle",posXShape,posYRect);
-
+  //elipse
   ellipse(30,340, 25,20);
   text("Ellipse",posXShape,posYEll);
 }
 
 
 void mouseClicked() {
-  opcionDeLlenado = clickEnRelleno();
-
-}
-
-boolean clickEnRelleno(){
   float radioCirc = tamCirc/2;
-  if(mouseX>(posXCirc1-radioCirc) && mouseX < (posXCirc1+radioCirc) && mouseY>(posYCirc1-radioCirc) && mouseY <(posYCirc1+radioCirc))
-    return true;
-  else if (mouseX>(posXCirc2-radioCirc) && mouseX < (posXCirc2+radioCirc) && mouseY>(posYCirc2-radioCirc) && mouseY <(posYCirc2+radioCirc))
-    return false;
-  return false;
+  println("Se clickeo el btn");
+  if(clickBotonRelleno())
+    opcionDeLlenado = true;
+  else if (clickBotonNoRelleno())
+    opcionDeLlenado = false;
 }
 
+boolean clickBotonNoRelleno(){
+  return mouseX>(posXCirc2-radioCirc) && mouseX < (posXCirc2+radioCirc) && mouseY>(posYCirc2-radioCirc) && mouseY <(posYCirc2+radioCirc);
+}
 
-
+boolean clickBotonRelleno(){
+  return mouseX>(posXCirc1-radioCirc) && mouseX < (posXCirc1+radioCirc) && mouseY>(posYCirc1-radioCirc) && mouseY <(posYCirc1+radioCirc);
+}
