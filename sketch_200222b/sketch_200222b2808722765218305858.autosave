@@ -18,7 +18,7 @@ float posYLine = posYPoint + dif;
 float posYRect = posYLine + dif;
 float posYEll = posYRect + dif;
 
-int opcionDeFigura =1;
+int opcionDeFigura =0;
 /**
 1 punto
 2 linea
@@ -43,20 +43,11 @@ void draw(){
   switch (opcionDeFigura) {
     case 1 :
       noFill();
-      rect(45,posYPoint-fontSize,45,20);
+      rect(53,posYPoint+(fontSize/2),36,20);
+    
     break;
-    case 2 :
-      noFill();
-      rect(45,posYLine-fontSize,45,20);
-    break;
-    case 3 :
-      noFill();
-      rect(45,posYRect-fontSize,95,20);
-    break;
-    case 4 :
-      noFill();
-      rect(45,posYEll-fontSize,70,20);
-    break;	
+    
+    
   }
 }
 
@@ -66,10 +57,10 @@ void menu(){
   fill(0);                         
   text("Filled?",posXShape,100); 
   circle(posXCirc1,posYCirc1,tamCirc);
-  
+  //triangleSimple(50,135,25,25);
   noFill();
   circle(posXCirc2,posYCirc2,tamCirc);
-  
+  //triangleSimple(80,135,25,25);
   text("Shape?",posXShape,200);
 
   fill(0);
@@ -86,20 +77,11 @@ void menu(){
   //elipse
   ellipse(30,340, 25,20);
   text("Ellipse",posXShape,posYEll);
-
-  text("Color?",posXShape,390);
-  int posXColor = 50;
-  int posXColor2 = posXColor+30;
-  rect(posXColor,400, 20,20);
-  rect(posXColor2,400, 20,20);
-  rect(posXColor,440, 20,20);
-  rect(posXColor2,440, 20,20);
-  rect(posXColor,480, 20,20);
-  rect(posXColor2,480, 20,20); 
 }
 
+
 void mouseClicked() {
-  //println("Pos en x: "+mouseX+" Pos en y: "+mouseY);
+  println("Pos en x: "+mouseX+" Pos en y: "+mouseY);
   if(clickBotonRelleno())
     opcionDeLlenado = true;
   else if (clickBotonNoRelleno())
@@ -123,17 +105,17 @@ boolean clickBotonRelleno(){
 }
 
 boolean clickPuntoShape(){
-  return mouseX>(17) && mouseX < (89) && mouseY>(posYPoint-fontSize) && mouseY <(posYPoint);
+  return mouseX>(17) && mouseX < (89) && mouseY>(posYPoint) && mouseY <(posYPoint+fontSize);
 }
 
 boolean clickLineaShape(){
-  return mouseX>(18) && mouseX < (80) && mouseY>(posYLine-fontSize) && mouseY <(posYLine);
+  return mouseX>(18) && mouseX < (80) && mouseY>(posYLine) && mouseY <(posYLine+fontSize);
 }
 
 boolean clickRectanguloShape(){
-  return mouseX>(16) && mouseX < (122) && mouseY>(posYRect-fontSize) && mouseY <(posYRect);
+  return mouseX>(16) && mouseX < (122) && mouseY>(posYRect) && mouseY <(posYRect+fontSize);
 }
 
 boolean clickElipseShape(){
-  return mouseX>(15) && mouseX < (99) && mouseY>(posYEll-fontSize) && mouseY <(posYEll);
+  return mouseX>(15) && mouseX < (99) && mouseY>(posYEll) && mouseY <(posYEll+fontSize);
 }
