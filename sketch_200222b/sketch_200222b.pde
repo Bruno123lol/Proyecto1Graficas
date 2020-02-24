@@ -18,16 +18,22 @@ float posYLine = posYPoint + dif;
 float posYRect = posYLine + dif;
 float posYEll = posYRect + dif;
 
-int opcionDeFigura =1;
 /**
 1 punto
 2 linea
 3 rectangulo
 4 elipse
 */
+int opcionDeFigura =1;
+
+int posXColor = 50;
+int posXColor2 = posXColor+30;
+//String colorSeleccionado = "#7e58a7";
+
+int colorSeleccionado = 1;
 
 void setup(){
-  size(1000,1000);
+  size(500,700);
   font = createFont("Arial",fontSize,true);
 }
 
@@ -56,6 +62,19 @@ void draw(){
     case 4 :
       noFill();
       rect(45,posYEll-fontSize,70,20);
+    break;	
+  }
+
+  switch (colorSeleccionado) {
+    case 1 :
+      stroke(#e60000);
+      circle(posXColor+10,410, 35);
+      stroke(#0a0000);
+    break;
+    case 2 :
+      stroke(#e60000);
+      circle(posXColor2+10,410, 35);
+      stroke(#0a0000);
     break;	
   }
 }
@@ -88,13 +107,18 @@ void menu(){
   text("Ellipse",posXShape,posYEll);
 
   text("Color?",posXShape,390);
-  int posXColor = 50;
-  int posXColor2 = posXColor+30;
+
+  fill(#7e58a7);
   rect(posXColor,400, 20,20);
+  fill(#33ccc4);
   rect(posXColor2,400, 20,20);
+  fill(#a30a96);
   rect(posXColor,440, 20,20);
+  fill(#faf0b7);
   rect(posXColor2,440, 20,20);
+  fill(#b7fadc);
   rect(posXColor,480, 20,20);
+  fill(#72dd0e);
   rect(posXColor2,480, 20,20); 
 }
 
@@ -112,6 +136,10 @@ void mouseClicked() {
     opcionDeFigura = 3;
   else if(clickElipseShape())
     opcionDeFigura = 4;
+  else if(clickColor1())
+    colorSeleccionado = 1;
+  else if(clickColor2())
+    colorSeleccionado = 2;
 }
 
 boolean clickBotonNoRelleno(){
@@ -136,4 +164,12 @@ boolean clickRectanguloShape(){
 
 boolean clickElipseShape(){
   return mouseX>(15) && mouseX < (99) && mouseY>(posYEll-fontSize) && mouseY <(posYEll);
+}
+
+boolean clickColor1(){
+  return mouseX>(posXColor-10) && mouseX < (posXColor+10) && mouseY>(390) && mouseY <(410);
+}
+
+boolean clickColor2(){
+  return mouseX>(posXColor2-10) && mouseX < (posXColor2+10) && mouseY>(390) && mouseY <(410);
 }
