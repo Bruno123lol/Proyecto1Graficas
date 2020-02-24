@@ -75,7 +75,27 @@ void draw(){
       stroke(#e60000);
       circle(posXColor2+10,410, 35);
       stroke(#0a0000);
-    break;	
+    break;
+    case 3 :
+      stroke(#e60000);
+      circle(posXColor+10,450, 35);
+      stroke(#0a0000);
+    break;
+    case 4 :
+      stroke(#e60000);
+      circle(posXColor2+10,450, 35);
+      stroke(#0a0000);
+    break;
+    case 5 :
+      stroke(#e60000);
+      circle(posXColor+10,490, 35);
+      stroke(#0a0000);
+    break;
+    case 6 :
+      stroke(#e60000);
+      circle(posXColor2+10,490, 35);
+      stroke(#0a0000);
+    break;
   }
 }
 
@@ -119,11 +139,15 @@ void menu(){
   fill(#b7fadc);
   rect(posXColor,480, 20,20);
   fill(#72dd0e);
-  rect(posXColor2,480, 20,20); 
+  rect(posXColor2,480, 20,20);
+  fill(0);
+
+  text("Figure: ",posXShape+200,100);
 }
 
 void mouseClicked() {
   //println("Pos en x: "+mouseX+" Pos en y: "+mouseY);
+  println("mouseX: "+mouseX+" mouseY: "+mouseY);
   if(clickBotonRelleno())
     opcionDeLlenado = true;
   else if (clickBotonNoRelleno())
@@ -140,6 +164,25 @@ void mouseClicked() {
     colorSeleccionado = 1;
   else if(clickColor2())
     colorSeleccionado = 2;
+  else if(clickColor3())
+    colorSeleccionado = 3;
+  else if(clickColor4())
+    colorSeleccionado = 4;
+  else if(clickColor5())
+    colorSeleccionado = 5;
+  else if(clickColor6())
+    colorSeleccionado = 6;
+}
+
+void keyPressed() { 
+  if (key == 'p' || key == 'P')
+    opcionDeFigura =1;
+  if (key == 'l' || key == 'L')
+    opcionDeFigura =2;
+  if (key == 'r' || key == 'R')
+    opcionDeFigura =3;
+  if (key == 'e' || key == 'E')
+    opcionDeFigura =4;
 }
 
 boolean clickBotonNoRelleno(){
@@ -167,9 +210,25 @@ boolean clickElipseShape(){
 }
 
 boolean clickColor1(){
-  return mouseX>(posXColor-10) && mouseX < (posXColor+10) && mouseY>(390) && mouseY <(410);
+  return mouseX>(posXColor) && mouseX < (posXColor+20) && mouseY>(400) && mouseY <(420);
 }
 
 boolean clickColor2(){
-  return mouseX>(posXColor2-10) && mouseX < (posXColor2+10) && mouseY>(390) && mouseY <(410);
+  return mouseX>(posXColor2) && mouseX < (posXColor2+20) && mouseY>(400) && mouseY <(420);
+}
+
+boolean clickColor3(){
+  return mouseX>(posXColor) && mouseX < (posXColor+20) && mouseY>(440) && mouseY <(460);
+}
+
+boolean clickColor4(){
+  return mouseX>(posXColor2) && mouseX < (posXColor2+20) && mouseY>(440) && mouseY <(460);
+}
+
+boolean clickColor5(){
+  return mouseX>(posXColor) && mouseX < (posXColor+20) && mouseY>(480) && mouseY <(500);
+}
+
+boolean clickColor6(){
+  return mouseX>(posXColor2) && mouseX < (posXColor2+20) && mouseY>(480) && mouseY <(500);
 }
