@@ -2,7 +2,6 @@ PFont font;
 //true es lleno
 boolean opcionDeLlenado = true;
 boolean figura = false;
-boolean actual = false;
 
 static final int fontSize = 16;
 
@@ -20,17 +19,13 @@ float posYLine = posYPoint + dif;
 float posYRect = posYLine + dif;
 float posYEll = posYRect + dif;
 
-/**
+/**x
 1 punto
 2 linea
 3 rectangulo
 4 elipse
 */
 int opcionDeFigura =1;
-
-//ArrayList[][] valorMouseXY = new ArrayList[1000][2];
-int[][] valorMouseXY = new int[1000][8];
-int i=0;
 
 int posXColor = 50;
 int posXColor2 = posXColor+30;
@@ -104,72 +99,14 @@ void draw(){
     break;
   }
 
-  if (figura) {
-    for (int j = 1; j <= i; ++j) {
-      if(valorMouseXY[j][6]==1)
-        switch (valorMouseXY[j][7]) {
-          case 1 :
-            fill(#7e58a7);
-          break;
-          case 2 :
-            fill(#33ccc4);
-          break;
-          case 3 :
-            fill(#a30a96);
-          break;
-          case 4 :
-            fill(#faf0b7);
-          break;
-          case 5 :
-            fill(#b7fadc);
-          break;
-          case 6 :
-            fill(#72dd0e);
-          break;
-        }
-      else{
+  switch (opcionDeFigura) {
+    case 1 :
+      if (opcionDeLlenado)
+        fill(0);
+      else
         noFill();
-        switch (valorMouseXY[j][7]) {
-          case 1 :
-            stroke(#7e58a7);
-          break;
-          case 2 :
-            stroke(#33ccc4);
-          break;
-          case 3 :
-            stroke(#a30a96);
-          break;
-          case 4 :
-            stroke(#faf0b7);
-          break;
-          case 5 :
-            stroke(#b7fadc);
-          break;
-          case 6 :
-            stroke(#72dd0e);
-          break;
-        }
-      }
-      switch (valorMouseXY[j][2]) {
-        case 1 :
-          circle(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][5]);
-        break;
-        case 2 :
-          line(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][3],valorMouseXY[j][4]);
-        break;
-        case 3 :
-          rectMode(CORNERS);
-          rect(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][3],valorMouseXY[j][4]);
-          rectMode(CORNER);
-        break;
-        case 4 :
-          ellipseMode(CORNERS);
-          ellipse(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][3],valorMouseXY[j][4]);
-          ellipseMode(CENTER);
-        break;
-      }
-      stroke(0);
-    }
+      circle(mouseX,mouseY,50);
+    break;	
   }
 }
 
@@ -217,8 +154,6 @@ void menu(){
   fill(0);
 
   text("Figure: ",posXShape+200,100);
-
-  text("Delete",posXShape,600);
 }
 
 void mouseClicked() {
@@ -248,35 +183,8 @@ void mouseClicked() {
     colorSeleccionado = 5;
   else if(clickColor6())
     colorSeleccionado = 6;
-  else if(clickBorrar())
-    i=0;
-}
-
-void mousePressed() {
-  if(!(clickBotonNoRelleno()&&clickBotonRelleno()&&clickColor1()&&clickColor2()&&clickColor3()&&clickColor4()&&clickColor5()&&clickColor6()&&clickElipseShape()&&clickLineaShape()&&clickPuntoShape()&&clickRectanguloShape()&&clickBorrar())){
-    actual = false;
-    i++;
-    if (opcionDeLlenado)
-      valorMouseXY[i][6] = 1;
-    else
-      valorMouseXY[i][6] = 0;
-    valorMouseXY[i][7] = colorSeleccionado;
-    valorMouseXY[i][0] = mouseX;
-    valorMouseXY[i][1] = mouseY;
-    valorMouseXY[i][2] = opcionDeFigura;
-    valorMouseXY[i][3] = mouseX;
-    valorMouseXY[i][4] = mouseY;
-  }
-}
-
-void mouseReleased() {
-  if(!(clickBotonNoRelleno()&&clickBotonRelleno()&&clickColor1()&&clickColor2()&&clickColor3()&&clickColor4()&&clickColor5()&&clickColor6()&&clickElipseShape()&&clickLineaShape()&&clickPuntoShape()&&clickRectanguloShape()&&clickBorrar())){
-    valorMouseXY[i][3] = mouseX;
-    valorMouseXY[i][4] = mouseY;
-    valorMouseXY[i][5] = (int)dist(valorMouseXY[i][0],valorMouseXY[i][1],valorMouseXY[i][3],valorMouseXY[i][4]);
+  else
     figura = true;
-    actual = true;
-  }
 }
 
 void keyPressed() { 
@@ -288,10 +196,6 @@ void keyPressed() {
     opcionDeFigura =3;
   if (key == 'e' || key == 'E')
     opcionDeFigura =4;
-}
-
-boolean clickBorrar(){
-  return mouseX>(posXShape) && mouseX < (posXShape+80) && mouseY>(600-fontSize) && mouseY <(600);
 }
 
 boolean clickBotonNoRelleno(){
