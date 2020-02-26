@@ -152,7 +152,9 @@ void draw(){
       }
       switch (valorMouseXY[j][2]) {
         case 1 :
-          circle(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][5]);
+          ellipseMode(CORNER);
+          ellipse(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][5],valorMouseXY[j][5]);
+          ellipseMode(CENTER);
         break;
         case 2 :
           line(valorMouseXY[j][0],valorMouseXY[j][1],valorMouseXY[j][3],valorMouseXY[j][4]);
